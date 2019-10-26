@@ -1,13 +1,13 @@
-has_rmls <- function(lines = NULL) {
-    if (is.null(lines)) {
-        stop("`lines` should be a character vector", call. = FALSE)
-    }
-
-    which(stringr::str_detect(lines, "rm\\(ls = ls\\(\\)\\)"))
-}
-
-identify_hazmat <- function(lines, pattern, color, emoji){
-    if (!is.call(color)) {
+#' Identify Hazard in Lines of Text
+#'
+#' @param lines a character vector of to check for hazards
+#' @param pattern a regexp to identify the hazard
+#' @param color a function to highlight the hazard within a line of text
+#'
+#' @return a tibble with lines of text which match the hazard along with the
+#' corresponding line numbers
+identify_hazard <- function(lines, pattern, color = function(x) x){
+    if (!is.function(color)) {
         stop("`color` must be a fuction. It should modify its string argument",
              call. = FALSE)
     }
@@ -23,6 +23,6 @@ identify_hazmat <- function(lines, pattern, color, emoji){
 
     line_nums <- seq_along(lines)[idx]
 
-    tibble::tibble(line = line_nums, emoji = emoji, text = marked_lines[idx])
+    tibble::tibble(line = line_nums, text = marked_lines[idx])
 }
 

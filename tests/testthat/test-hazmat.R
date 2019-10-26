@@ -8,7 +8,7 @@ check_hazmat <- function(patt) {
         "    return(z)",
         "}"
         )
-    identify_hazmat(check_lines, patt, crayon::red, "🔥")
+    identify_hazard(check_lines, patt)
 }
 
 test_that("identify rm(ls = ls())", {
@@ -19,4 +19,14 @@ test_that("identify rm(ls = ls())", {
     expect_silent(res <- check_hazmat("rm\\(ls = ls\\(\\)\\)"))
     expect_equal(nrow(res), 1)
     expect_equal(nchar(crayon::strip_style(res$text)), 17)
+})
+
+test_that("identify setwd()", {
+    expect_silent(res <- check_hazmat("(setwd\\([^)]+\\))"))
+    expect_equal(nrow(res), 1)
+    expect_equal(nchar(crayon::strip_style(res$text)), 27)
+
+    expect_silent(res <- check_hazmat("setwd\\([^)]+\\)"))
+    expect_equal(nrow(res), 1)
+    expect_equal(nchar(crayon::strip_style(res$text)), 27)
 })

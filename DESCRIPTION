@@ -14,3 +14,4 @@ Suggests:
 Imports: 
     crayon,
     stringr
+RoxygenNote: 6.1.1
