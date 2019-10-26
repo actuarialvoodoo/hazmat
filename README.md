@@ -9,6 +9,10 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/hazmat)](https://CRAN.R-project.org/package=hazmat)
+[![Travis build
+status](https://travis-ci.org/actuarialvoodoo/hazmat.svg?branch=master)](https://travis-ci.org/actuarialvoodoo/hazmat)
+[![Codecov test
+coverage](https://codecov.io/gh/actuarialvoodoo/hazmat/branch/master/graph/badge.svg)](https://codecov.io/gh/actuarialvoodoo/hazmat?branch=master)
 <!-- badges: end -->
 
 The goal of hazmat is to provide a simple way for educators, and other
