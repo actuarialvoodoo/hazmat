@@ -25,4 +25,3 @@ identify_hazard <- function(lines, pattern, color = function(x) x){
 
     tibble::tibble(line = line_nums, text = marked_lines[idx])
 }
-
