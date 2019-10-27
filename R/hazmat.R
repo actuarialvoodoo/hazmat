@@ -52,7 +52,7 @@ screen_file <- function(path = NULL, quiet = FALSE){
         stop("`path` should be a valid file path.", call. = FALSE)
     }
 
-    if (fs::file_access(path, mode = "read")) {
+    if (!fs::file_access(path, mode = "read")) {
         stop("Cannot read `path`. ",
              "You may not have read access or the file may not exist.",
              call. = FALSE)
