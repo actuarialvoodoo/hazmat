@@ -25,3 +25,19 @@ identify_hazard <- function(lines, pattern, color = function(x) x){
 
     tibble::tibble(line = line_nums, text = marked_lines[idx])
 }
+
+identify_rm <- function(lines) {
+    pattern <- "rm\\(ls = ls\\(\\)\\)"
+    identify_hazard(lines, pattern, color = crayon::red)
+}
+
+identify_setwd <- function(lines) {
+    pattern <- "setwd\\([^\\)]+\\)"
+    identify_hazard(lines, pattern, color = crayon::red)
+}
+
+identify_system <- function(lines) {
+    pattern <- "system(2)?\\('[^\\')]+'\\)"
+    identify_hazard(lines, pattern, color = crayon::yellow)
+}
+
