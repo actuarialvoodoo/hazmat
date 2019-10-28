@@ -67,7 +67,7 @@ screen_file <- function(path = NULL, quiet = FALSE){
 
     hazards <- dplyr::arrange_at(hazards, .vars = "line")
     if (!quiet) {
-
+        usethis::ui_line(glue::glue("File: {path}"))
         output <- glue::glue_data(hazards, "{emoji} {line}: {text}")
         purrr::walk(output, usethis::ui_line)
     }
