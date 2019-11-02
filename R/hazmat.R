@@ -81,7 +81,7 @@ screen_file <- function(path = NULL, quiet = FALSE){
     )
 
     hazards <- dplyr::arrange_at(hazards, .vars = "line")
-    if (!quiet) {
+    if (!quiet && nrow(hazards) > 0) {
         usethis::ui_line(glue::glue("== File: {path} =="))
         output <- glue::glue_data(hazards, "{emoji} {line}: {text}")
         purrr::walk(output, usethis::ui_line)
@@ -90,6 +90,14 @@ screen_file <- function(path = NULL, quiet = FALSE){
     invisible(hazards)
 }
 
-format_hazards <- function(hazards) {
-    glue::glue_data(hazards, "{emoji} {line}: {text}")
+screen_folder <- function(path = ".", quiet = FALSE, recurse = FALSE) {
+    r_files <- fs::dir_ls(path = path,
+                          recurse = recurse,
+                          regexp = "(?i)\\.R(md)?$")
+
+    result <- purrr::map_df(r_files,
+                            .f = ~ screen_file(fs::path(path, .x),
+                                               quiet = quiet)
+                            )
+    invisible(result)
 }
