@@ -47,6 +47,21 @@ identify_system <- function(lines) {
     identify_hazard(lines, pattern, color = crayon::yellow, emoji = emoji)
 }
 
+#' Screen File For Hazardous R Code
+#'
+#' `screen_file` applies a set of defined predefined searches (regexps) to all
+#' of the R code in an R or Rmd file.
+#'
+#' @param path a string, the path to the file to be screened.
+#' @param quiet a boolean, if TRUE then console output is suppressed. Defaults
+#' FALSE.
+#'
+#' @return `scren_file` is typically called for it's side effects of printing
+#' information about hazardous material to the console. A tibble of the data
+#' used to create this message is returned invisibly to enable piping.
+#'
+#' @export
+#'
 screen_file <- function(path = NULL, quiet = FALSE){
     if (is.null(path)) {
         stop("`path` should be a valid file path.", call. = FALSE)
@@ -67,7 +82,7 @@ screen_file <- function(path = NULL, quiet = FALSE){
 
     hazards <- dplyr::arrange_at(hazards, .vars = "line")
     if (!quiet) {
-        usethis::ui_line(glue::glue("File: {path}"))
+        usethis::ui_line(glue::glue("== File: {path} =="))
         output <- glue::glue_data(hazards, "{emoji} {line}: {text}")
         purrr::walk(output, usethis::ui_line)
     }
