@@ -4,7 +4,7 @@
 \alias{identify_hazard}
 \title{Identify Hazard in Lines of Text}
 \usage{
-identify_hazard(lines, pattern, color = function(x) x)
+identify_hazard(lines, pattern, color = function(x) x, emoji = "")
 }
 \arguments{
 \item{lines}{a character vector of to check for hazards}
@@ -12,6 +12,8 @@ identify_hazard(lines, pattern, color = function(x) x)
 \item{pattern}{a regexp to identify the hazard}
 
 \item{color}{a function to highlight the hazard within a line of text}
+
+\item{emoji}{an emoji to include in the the output}
 }
 \value{
 a tibble with lines of text which match the hazard along with the
