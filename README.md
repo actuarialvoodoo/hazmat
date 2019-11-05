@@ -89,16 +89,23 @@ of them have a CS background and could really mess with me\!
 devtools::install_github("actuarialvoodoo/hazmat")
 ```
 
-## Example
+## Usage
 
-This is a basic example which shows you how to solve a common problem:
+Currently, hazmat supports searching individual files or all R/Rmd files
+in a folder for the following hazardous code snippets:
+
+  - setwd
+  - system
+  - rm(ls = ls()).
+
+<!-- end list -->
 
 ``` r
 library(hazmat)
 ## basic example code
 
-screen_folder("tests/testinput")
-#> == File: tests/testinput/test_file.R ==
+screen_folder("examples")
+#> == File: examples/test_file.R ==
 #> 🔥 4:     rm(ls = ls())
 #> 🔔 8:     system('pwd')
 ```
