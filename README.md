@@ -98,4 +98,7 @@ library(hazmat)
 ## basic example code
 
 screen_folder("tests/testinput")
+#> == File: tests/testinput/test_file.R ==
+#> 🔥 4:     rm(ls = ls())
+#> 🔔 8:     system('pwd')
 ```

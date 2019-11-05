@@ -13,7 +13,7 @@ screen_file(path = NULL, quiet = FALSE)
 FALSE.}
 }
 \value{
-`scren_file` is typically called for it's side effects of printing
+`screen_file` is typically called for it's side effects of printing
 information about hazardous material to the console. A tibble of the data
 used to create this message is returned invisibly to enable piping.
 }

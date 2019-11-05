@@ -49,7 +49,7 @@ devtools::install_github("actuarialvoodoo/hazmat")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example, eval=FALSE, echo=TRUE}
+```{r example, eval=TRUE, echo=TRUE}
 library(hazmat)
 ## basic example code
 
