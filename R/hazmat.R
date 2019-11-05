@@ -26,7 +26,10 @@ identify_hazard <- function(lines, pattern, color = function(x) x, emoji = ""){
     if (length(line_nums) == 0L) {
         emoji <- character(0)
     }
-    tibble::tibble(line = line_nums, text = marked_lines[idx], emoji = emoji)
+    tibble::tibble(line = line_nums,
+                   text = marked_lines[idx],
+                   orig_text = lines[idx],
+                   emoji = emoji)
 }
 
 identify_rm <- function(lines) {
@@ -56,7 +59,7 @@ identify_system <- function(lines) {
 #' @param quiet a boolean, if TRUE then console output is suppressed. Defaults
 #' FALSE.
 #'
-#' @return `scren_file` is typically called for it's side effects of printing
+#' @return `screen_file` is typically called for it's side effects of printing
 #' information about hazardous material to the console. A tibble of the data
 #' used to create this message is returned invisibly to enable piping.
 #'
@@ -90,14 +93,30 @@ screen_file <- function(path = NULL, quiet = FALSE){
     invisible(hazards)
 }
 
+#' Screen All R Files in Folder for Hazardous Code
+#'
+#' `screen_folder` applies a set of defined predefined searches (regexps) to all
+#' of the R code in all of the R and Rmd files contained in a folder.
+#'
+#' @param path a string, the path to the file to be screened.
+#' @param quiet a boolean, if TRUE then console output is suppressed. Defaults
+#' FALSE.
+#' @param recurse a boolean, if TRUE then sub-directories of `path` are also
+#' checked for R and Rmd files. Defaults to FALSE.
+#'
+#' @return `screen_folder` is typically called for it's side effects of printing
+#' information about hazardous material to the console. A tibble of the data
+#' used to create this message is returned invisibly to enable piping.
+#'
+#' @export
+#'
 screen_folder <- function(path = ".", quiet = FALSE, recurse = FALSE) {
     r_files <- fs::dir_ls(path = path,
                           recurse = recurse,
                           regexp = "(?i)\\.R(md)?$")
 
     result <- purrr::map_df(r_files,
-                            .f = ~ screen_file(fs::path(path, .x),
-                                               quiet = quiet)
-                            )
+                            .f = ~ screen_file(.x, quiet = quiet),
+                            .id = "file_name")
     invisible(result)
 }
