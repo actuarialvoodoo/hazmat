@@ -84,9 +84,6 @@ of them have a CS background and could really mess with me\!
 
 ## Installation
 
-You can install the released version of hazmat from
-[CRAN](https://CRAN.R-project.org) with:
-
 ``` r
 # install.packages("devtools")
 devtools::install_github("actuarialvoodoo/hazmat")
@@ -100,5 +97,5 @@ This is a basic example which shows you how to solve a common problem:
 library(hazmat)
 ## basic example code
 
-quarantine(fs::path("path", "to", "project"))
+screen_folder("tests/testinput")
 ```

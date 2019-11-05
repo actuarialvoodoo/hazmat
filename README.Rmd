@@ -39,7 +39,6 @@ https://twitter.com/ryebreadnyc/status/1186665880098430977
 
 ## Installation
 
-You can install the released version of hazmat from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 # install.packages("devtools")
@@ -54,6 +53,6 @@ This is a basic example which shows you how to solve a common problem:
 library(hazmat)
 ## basic example code
 
-quarantine(fs::path("path", "to", "project"))
+screen_folder("tests/testinput")
 ```
 
