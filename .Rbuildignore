@@ -7,3 +7,4 @@
 ^examples
 ^CODE_OF_CONDUCT\.md$
 ^appveyor\.yml$
+^data-raw$
