@@ -34,20 +34,17 @@ identify_hazard <- function(lines, pattern, color = function(x) x, emoji = ""){
 
 identify_rm <- function(lines) {
     pattern <- "rm\\(ls = ls\\(\\)\\)"
-    emoji <- intToUtf8(0x1f525) #  Fire Emoji
-    identify_hazard(lines, pattern, color = crayon::red, emoji = emoji)
+    identify_hazard(lines, pattern, color = crayon::red, emoji = FIRE_EMOJI)
 }
 
 identify_setwd <- function(lines) {
     pattern <- "setwd\\([^\\)]+\\)"
-    emoji <- intToUtf8(0x1f525) #  Fire Emoji
-    identify_hazard(lines, pattern, color = crayon::red, emoji = emoji)
+    identify_hazard(lines, pattern, color = crayon::red, emoji = FIRE_EMOJI)
 }
 
 identify_system <- function(lines) {
     pattern <- "system(2)?\\('[^\\')]+'\\)"
-    emoji <- intToUtf8(0x1f514) #  Bell Emoji
-    identify_hazard(lines, pattern, color = crayon::yellow, emoji = emoji)
+    identify_hazard(lines, pattern, color = crayon::yellow, emoji = BELL_EMOJI)
 }
 
 #' Screen File For Hazardous R Code

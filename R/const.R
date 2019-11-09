@@ -1,0 +1,2 @@
+FIRE_EMOJI <- intToUtf8(0x1f525)
+BELL_EMOJI <- intToUtf8(0x1f514)
