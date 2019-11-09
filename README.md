@@ -13,6 +13,8 @@ status](https://www.r-pkg.org/badges/version/hazmat)](https://CRAN.R-project.org
 status](https://travis-ci.org/actuarialvoodoo/hazmat.svg?branch=master)](https://travis-ci.org/actuarialvoodoo/hazmat)
 [![Codecov test
 coverage](https://codecov.io/gh/actuarialvoodoo/hazmat/branch/master/graph/badge.svg)](https://codecov.io/gh/actuarialvoodoo/hazmat?branch=master)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/actuarialvoodoo/hazmat?branch=master&svg=true)](https://ci.appveyor.com/project/actuarialvoodoo/hazmat)
 <!-- badges: end -->
 
 The goal of hazmat is to provide a simple way for educators, and other
