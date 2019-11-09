@@ -47,6 +47,10 @@ identify_system <- function(lines) {
     identify_hazard(lines, pattern, color = crayon::yellow, emoji = BELL_EMOJI)
 }
 
+identify_install_packages <- function(lines) {
+    pattern <- "install.packages\\('[^\\')]+'\\)"
+    identify_hazard(lines, pattern, color = crayon::yellow, emoji = BELL_EMOJI)
+}
 #' Screen File For Hazardous R Code
 #'
 #' `screen_file` applies a set of defined predefined searches (regexps) to all
@@ -77,7 +81,8 @@ screen_file <- function(path = NULL, quiet = FALSE){
     hazards <- dplyr::bind_rows(
         identify_rm(file_lines),
         identify_setwd(file_lines),
-        identify_system(file_lines)
+        identify_system(file_lines),
+        identify_install_packages(file_lines)
     )
 
     hazards <- dplyr::arrange_at(hazards, .vars = "line")
