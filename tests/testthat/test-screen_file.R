@@ -18,5 +18,5 @@ test_that("missing file fails with expected error", {
 test_that("screen of folder works", {
     expect_silent(res <- screen_folder("testdata", quiet = TRUE))
     expect_s3_class(res, "tbl_df")
-    expect_equal(nrow(res), 2)
+    expect_equal(nrow(res), 4)
 })
