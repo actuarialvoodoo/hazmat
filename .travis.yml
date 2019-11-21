@@ -4,7 +4,7 @@ language: r
 r:
     - oldrel
     - release
-    - develop
+    - devel
 
 cache: packages
 
