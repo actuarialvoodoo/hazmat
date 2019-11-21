@@ -32,24 +32,6 @@ identify_hazard <- function(lines, pattern, color = function(x) x, emoji = ""){
                    emoji = emoji)
 }
 
-identify_rm <- function(lines) {
-    pattern <- "rm\\(ls = ls\\(\\)\\)"
-    emoji <- intToUtf8(0x1f525) #  Fire Emoji
-    identify_hazard(lines, pattern, color = crayon::red, emoji = emoji)
-}
-
-identify_setwd <- function(lines) {
-    pattern <- "setwd\\([^\\)]+\\)"
-    emoji <- intToUtf8(0x1f525) #  Fire Emoji
-    identify_hazard(lines, pattern, color = crayon::red, emoji = emoji)
-}
-
-identify_system <- function(lines) {
-    pattern <- "system(2)?\\('[^\\')]+'\\)"
-    emoji <- intToUtf8(0x1f514) #  Bell Emoji
-    identify_hazard(lines, pattern, color = crayon::yellow, emoji = emoji)
-}
-
 #' Screen File For Hazardous R Code
 #'
 #' `screen_file` applies a set of defined predefined searches (regexps) to all
@@ -77,10 +59,8 @@ screen_file <- function(path = NULL, quiet = FALSE){
     }
     file_lines <- readLines(path)
 
-    hazards <- dplyr::bind_rows(
-        identify_rm(file_lines),
-        identify_setwd(file_lines),
-        identify_system(file_lines)
+    hazards <- purrr::pmap_dfr(
+        .l = hazard_material, .f = identify_hazard, lines = file_lines
     )
 
     hazards <- dplyr::arrange_at(hazards, .vars = "line")
